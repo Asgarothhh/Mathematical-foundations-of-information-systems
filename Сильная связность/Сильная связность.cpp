@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <fstream>
 #include <vector>
 #include <ctime>
@@ -179,7 +179,7 @@ void buildAdjacencyLists(int vertices, const vector<Edge>& edgeList, vector<vect
     }
 }
 
-void dfs1(int v, const vector<vector<int>>& g, vector<char>& used, vector<int>& order) 
+void dfs1(int v, const vector<vector<int>>& g, vector<bool>& used, vector<int>& order) 
 {
     used[v] = true;
     for (int to : g[v]) 
@@ -192,7 +192,7 @@ void dfs1(int v, const vector<vector<int>>& g, vector<char>& used, vector<int>& 
     order.push_back(v);
 }
 
-void dfs2(int v, const vector<vector<int>>& gr, vector<char>& used, vector<int>& component) 
+void dfs2(int v, const vector<vector<int>>& gr, vector<bool>& used, vector<int>& component) 
 {
     used[v] = true;
     component.push_back(v);
@@ -207,7 +207,7 @@ void dfs2(int v, const vector<vector<int>>& gr, vector<char>& used, vector<int>&
 
 void findStronglyConnectedComponents(int vertices, const vector<vector<int>>& g, const vector<vector<int>>& gr) 
 {
-    vector<char> used(vertices, false);
+    vector<bool> used(vertices, false);
     vector<int> order, component;
 
     // Первый проход — прямой граф
@@ -239,7 +239,8 @@ void findStronglyConnectedComponents(int vertices, const vector<vector<int>>& g,
     }
 }
 
-int main() {
+int main() 
+{
     setlocale(LC_ALL, "Russian");
 
     string inputfilePath = "input.txt";
